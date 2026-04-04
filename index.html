@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuomo Kiiskinen | MD, PhD | Scientist · Physician · Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg-primary: #000000;
+        --bg-secondary: #0a0a0a;
+        --bg-tertiary: #111111;
+        --bg-card: #0d0d0d;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --text-muted: #666666;
+        --red-primary: #8C1515;
+        --red-secondary: #B83A4B;
+        --red-dim: #5e0e0e;
+        --red-glow: rgba(140, 21, 21, 0.18);
+        --border-color: #1a1a1a;
+        --border-highlight: #2a2a2a;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'JetBrains Mono', monospace;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.7;
+        font-size: 14px;
+    }
+
+    /* Navigation */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 80%, transparent 100%);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        color: var(--red-primary);
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--red-primary);
+    }
+
+    /* Section blocks */
+    section {
+        padding: 6rem 4rem 4rem;
+        position: relative;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--red-dim), transparent);
+        opacity: 0.3;
+    }
+
+    .content {
+        max-width: 1000px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    /* Title section */
+    .title-section {
+        min-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background: radial-gradient(ellipse at center, var(--red-glow) 0%, transparent 70%);
+        padding-top: 8rem;
+    }
+
+    .title-section .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title-section h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--red-primary);
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+        text-shadow: 0 0 60px rgba(140, 21, 21, 0.4);
+    }
+
+    .title-section .tagline {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 2rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .title-section .identity {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        margin-bottom: 0;
+        max-width: 700px;
+        line-height: 1.8;
+    }
+
+    .title-section .identity span {
+        color: var(--red-secondary);
+    }
+
+    /* Section headers */
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--red-primary);
+        margin-bottom: 2rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid var(--red-dim);
+        display: inline-block;
+        letter-spacing: 1px;
+    }
+
+    h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--red-secondary);
+        margin: 0 0 0.5rem;
+    }
+
+    p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        max-width: 900px;
+    }
+
+    strong {
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    a {
+        color: var(--red-secondary);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    a:hover {
+        color: var(--red-primary);
+    }
+
+    /* About text */
+    .about-text {
+        font-size: 0.9rem;
+        line-height: 1.9;
+    }
+
+    .about-text p {
+        margin-bottom: 1.2rem;
+    }
+
+    /* Project cards */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .project-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-left: 3px solid var(--red-dim);
+        padding: 1.5rem;
+        transition: all 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-card:hover {
+        border-color: var(--border-highlight);
+        border-left-color: var(--red-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(140, 21, 21, 0.06);
+    }
+
+    .project-card h3 {
+        margin-bottom: 0.3rem;
+    }
+
+    .project-card .project-type {
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.8rem;
+    }
+
+    .project-card p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+    }
+
+    .project-card .project-link {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: auto;
+    }
+
+    .project-card .project-link::after {
+        content: ' →';
+    }
+
+    /* Publications list */
+    .pub-list {
+        list-style: none;
+        margin-top: 1rem;
+    }
+
+    .pub-list li {
+        padding: 0.9rem 0;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.82rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+    }
+
+    .pub-list li:last-child {
+        border-bottom: none;
+    }
+
+    .pub-list li .pub-title {
+        color: var(--text-primary);
+        font-weight: 500;
+    }
+
+    .pub-list li .pub-venue {
+        color: var(--red-secondary);
+        font-style: italic;
+    }
+
+    .pub-list li .pub-note {
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        margin-left: 0.5rem;
+    }
+
+    .pub-more {
+        margin-top: 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .contact-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        padding: 1rem 1.2rem;
+        transition: all 0.3s;
+    }
+
+    .contact-item:hover {
+        border-color: var(--red-dim);
+    }
+
+    .contact-item .label {
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.3rem;
+    }
+
+    .contact-item a {
+        font-size: 0.85rem;
+        word-break: break-all;
+    }
+
+    /* Footer */
+    footer {
+        padding: 2rem 4rem;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        section {
+            padding: 4rem 1.5rem 3rem;
+        }
+
+        .title-section {
+            padding-top: 6rem;
+        }
+
+        .title-section h1 {
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .projects-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            font-size: 0.65rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">TK</div>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<section class="title-section">
+    <div class="content">
+        <h1>Tuomo Kiiskinen</h1>
+        <div class="tagline">MD · PhD · Postdoctoral Scholar at Stanford</div>
+        <div class="identity">
+            <span>Scientist</span> · <span>Physician</span> · <span>Engineer</span><br>
+            Working at the intersection of computational genomics, clinical AI, and AI-accelerated scientific discovery.
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="content">
+        <h2>ABOUT</h2>
+        <div class="about-text">
+            <p>I'm a postdoctoral scholar at <strong>Stanford's Rivas Lab</strong> (Department of Biomedical Data Science), where I build GPU-accelerated computational genomics methods and AI-native clinical systems. I'm also a practicing emergency medicine physician with a decade of clinical experience.</p>
+            <p>Before Stanford, I co-designed the core phenotyping infrastructure for <strong>FinnGen</strong>, defining disease endpoints across Finnish national health registries for 500K+ individuals — infrastructure now used by thousands of researchers globally. My research spans large-scale biobank genetics, pharmacogenomics, and computational methods for biomedical discovery.</p>
+            <p>My current focus is building systems that let scientists collaborate with frontier AI models to accelerate biomedical research by an order of magnitude. I believe the future of biology requires comprehensive world models that integrate genomic, clinical, and environmental data — and I'm building toward that future.</p>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="content">
+        <h2>PROJECTS</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <h3>UltraLasso</h3>
+                <div class="project-type">GPU-accelerated genomics</div>
+                <p>A GPU-native pipeline that runs complete genome-wide association studies in minutes instead of hours or days. Makes biobank-scale genetic analysis fast enough to run interactively alongside AI coding agents.</p>
+                <a href="https://yuj1r0.github.io/ultralasso-gwas/" class="project-link">View project</a>
+            </div>
+
+            <div class="project-card">
+                <h3>VISTA Architect</h3>
+                <div class="project-type">Clinical AI platform</div>
+                <p>An ARPA-H funded AI-native clinical platform deployed at Stanford Medicine. Transforms electronic health records into structured knowledge graphs and lets clinicians chat with full patient histories — validated in oncology tumor board workflows.</p>
+                <a href="https://drive.google.com/file/d/1-PKJrXZkt3uTdg0Cf1XCf8lNkrSU8FAw/view?usp=sharing" target="_blank" class="project-link">Watch demo video</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Human Genome Interface (HGI)</h3>
+                <div class="project-type">Individual genome analysis</div>
+                <p>A personal genome analysis tool that delivers a full clinical-grade interpretation of an individual's whole genome in under 10 minutes, with a conversational "talk to your genome" interface.</p>
+                <a href="https://github.com/yuj1r0/hgi" class="project-link">View on GitHub</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Killbench</h3>
+                <div class="project-type">Clinical AI safety benchmark</div>
+                <p>An adversarial benchmark that tests whether LLMs can make safe clinical decisions under uncertainty. Reveals concrete failure modes in frontier models that standard medical benchmarks miss.</p>
+                <a href="#contact" class="project-link">Contact for details</a>
+            </div>
+
+            <div class="project-card">
+                <h3>MOA Dreamer</h3>
+                <div class="project-type">LLM memory architecture</div>
+                <p>A compartmentalized architecture that gives frontier LLMs fast access to newly learned skills without retraining the main model. Provides large accuracy improvements to Claude and GPT on tasks designed to defeat standard retrieval.</p>
+                <a href="#contact" class="project-link">Contact for details</a>
+            </div>
+
+            <div class="project-card">
+                <h3>The Human-AI Scientist</h3>
+                <div class="project-type">Vision document</div>
+                <p>My thinking on what AI-native scientific workflows should look like — including the "context rehydration problem" for long-horizon projects and the design of a Science AI IDE.</p>
+                <a href="https://docs.google.com/document/d/1BsmyR4xKqVuSesQIeDDZefAx6iD-VQ7rHZs1ho55Iws/edit?usp=sharing" class="project-link">Read the doc</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="publications">
+    <div class="content">
+        <h2>SELECTED PUBLICATIONS</h2>
+        <p>Full publication list on <a href="https://scholar.google.com/citations?user=9oOx0yIAAAAJ" target="_blank">Google Scholar</a>.</p>
+        <ul class="pub-list">
+            <li>
+                <span class="pub-title">Univariate-Guided Sparse Regression for Biobank-Scale High-Dimensional Omics Data</span><br>
+                Richland J*, <strong>Kiiskinen T*</strong>, Wang W, Lu S, Narasimhan B, Hastie T, Rivas M, Tibshirani R.
+                <span class="pub-venue">arXiv:2511.22049</span>, 2025
+                <span class="pub-note">*co-first author</span>
+            </li>
+            <li>
+                <span class="pub-title">Genetic predictors of lifelong medication-use patterns in cardiometabolic diseases</span><br>
+                <strong>Kiiskinen T</strong>, Helkkula P, Krebs K, et al.
+                <span class="pub-venue">Nature Medicine</span> 29, 209–218, 2023
+                <span class="pub-note">Best FinnGen Paper</span>
+            </li>
+            <li>
+                <span class="pub-title">Genetic risk factors have a substantial impact on healthy life years</span><br>
+                Jukarainen S, <strong>Kiiskinen T</strong>, et al.
+                <span class="pub-venue">Nature Medicine</span> 28, 1893–1901, 2022
+            </li>
+            <li>
+                <span class="pub-title">Polygenic and clinical risk scores and their impact on age at onset and prediction of cardiometabolic diseases and common cancers</span><br>
+                Mars N, Koskela JT, Ripatti P, <strong>Kiiskinen T</strong>, et al.
+                <span class="pub-venue">Nature Medicine</span> 26, 549–557, 2020
+            </li>
+            <li>
+                <span class="pub-title">FinnGen provides genetic insights from a well-phenotyped isolated population</span><br>
+                Kurki MI, ..., <strong>Kiiskinen T</strong>, ..., Palotie A.
+                <span class="pub-venue">Nature</span> 613, 508–518, 2023
+            </li>
+            <li>
+                <span class="pub-title">Efficient and accurate frailty model approach for genome-wide survival association analysis</span><br>
+                Dey R, Zhou W, <strong>Kiiskinen T</strong>, et al.
+                <span class="pub-venue">Nature Communications</span> 13, 5437, 2022
+            </li>
+            <li>
+                <span class="pub-title">Genomic prediction of alcohol-related morbidity and mortality</span><br>
+                <strong>Kiiskinen T</strong>, Mars NJ, et al.
+                <span class="pub-venue">Translational Psychiatry</span> 10, 23, 2020
+                <span class="pub-note">ASHG Reviewers' Choice</span>
+            </li>
+            <li>
+                <span class="pub-title">Genetics of 35 blood and urine biomarkers in the UK Biobank</span><br>
+                Sinnott-Armstrong N, ..., <strong>Kiiskinen T</strong>, ..., Rivas MA.
+                <span class="pub-venue">Nature Genetics</span> 53, 185–194, 2021
+            </li>
+        </ul>
+        <p class="pub-more">See <a href="https://scholar.google.com/citations?user=9oOx0yIAAAAJ" target="_blank">Google Scholar</a> for full publication list.</p>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="content">
+        <h2>CONTACT</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="label">Email</div>
+                <a href="mailto:tuomoki@stanford.edu">tuomoki@stanford.edu</a>
+            </div>
+            <div class="contact-item">
+                <div class="label">GitHub</div>
+                <a href="https://github.com/yuj1r0" target="_blank">github.com/yuj1r0</a>
+            </div>
+            <div class="contact-item">
+                <div class="label">Google Scholar</div>
+                <a href="https://scholar.google.com/citations?user=9oOx0yIAAAAJ" target="_blank">scholar.google.com</a>
+            </div>
+            <div class="contact-item">
+                <div class="label">LinkedIn</div>
+                <a href="https://www.linkedin.com/in/tuomokiiskinen/" target="_blank">linkedin.com/in/tuomokiiskinen</a>
+            </div>
+            <div class="contact-item">
+                <div class="label">X / Twitter</div>
+                <a href="https://x.com/7uomoki" target="_blank">@7uomoki</a>
+            </div>
+            <div class="contact-item">
+                <div class="label">Location</div>
+                <a href="#">Palo Alto, CA</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    Tuomo Kiiskinen · MD, PhD · Postdoctoral Scholar, Stanford University
+</footer>
+
+</body>
+</html>
